@@ -3,31 +3,26 @@ using System.Collections;
 
 public class CameraFollow : MonoBehaviour {
 	private Vector3 offset;
-	//private int lag = 10;
 	public float xlag;
 	public float zlag;
 	public float cameradist;
 	public GameObject player;
+    private Transform cameraTransform;
 	// Use this for initialization
 	void Start () {
-		offset = GetComponent<Camera>().transform.position - player.transform.position;
+        cameraTransform = GetComponent<Camera>().transform;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 newCameraPosition = player.transform.position + offset;
-		newCameraPosition.y = cameradist;
-		if (GetComponent<Camera>().transform.position.x - newCameraPosition.x > xlag) {
-			GetComponent<Camera> ().transform.position = newCameraPosition + new Vector3 (xlag, 0, 0);
+		if (Mathf.Abs(cameraTransform.position.x - player.transform.position.x) > xlag) {
+            float newX = cameraTransform.position.x - player.transform.position.x  > 0? player.transform.position.x + xlag : player.transform.position.x - xlag;
+            cameraTransform.position = new Vector3(newX, cameraTransform.position.y, cameraTransform.position.z);
 		}
-		if (GetComponent<Camera>().transform.position.x - newCameraPosition.x < -xlag) {
-			GetComponent<Camera> ().transform.position = newCameraPosition + new Vector3 (-xlag, 0, 0);
-		} 
-		if (GetComponent<Camera>().transform.position.z - newCameraPosition.z > zlag) {
-			GetComponent<Camera> ().transform.position = newCameraPosition + new Vector3 (0, 0, zlag);
-		}
-		if (GetComponent<Camera>().transform.position.z - newCameraPosition.z < -zlag) {
-			GetComponent<Camera> ().transform.position = newCameraPosition + new Vector3 (0, 0, -zlag);
-		}
-	}
+        if (Mathf.Abs(cameraTransform.position.z - player.transform.position.z) > zlag)
+        {
+            float newZ = cameraTransform.position.z - player.transform.position.z > 0 ? player.transform.position.z + zlag : player.transform.position.z - xlag;
+            cameraTransform.position = new Vector3(cameraTransform.position.x, cameraTransform.position.y, newZ);
+        }
+    }
 }
