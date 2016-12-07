@@ -5,7 +5,7 @@ public class CameraFollow : MonoBehaviour {
 	private Vector3 offset;
 	public float xlag;
 	public float zlag;
-	public float cameradist;
+    public float ylag;
 	public GameObject player;
     private Transform cameraTransform;
 	// Use this for initialization
@@ -21,8 +21,9 @@ public class CameraFollow : MonoBehaviour {
 		}
         if (Mathf.Abs(cameraTransform.position.z - player.transform.position.z) > zlag)
         {
-            float newZ = cameraTransform.position.z - player.transform.position.z > 0 ? player.transform.position.z + zlag : player.transform.position.z - xlag;
+            float newZ = cameraTransform.position.z - player.transform.position.z > 0 ? player.transform.position.z + zlag : player.transform.position.z - zlag;
             cameraTransform.position = new Vector3(cameraTransform.position.x, cameraTransform.position.y, newZ);
         }
+
     }
 }
