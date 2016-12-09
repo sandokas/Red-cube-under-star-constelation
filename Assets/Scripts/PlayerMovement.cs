@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetKey(KeyCode.S)) {
             forceToAdd = Vector3.back * force * Time.deltaTime;
         }
-        rb.AddRelativeForce(forceToAdd,ForceMode.Force);
+        rb.AddRelativeForce(forceToAdd,ForceMode.Impulse);
 
     }
 }
