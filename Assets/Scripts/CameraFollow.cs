@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class CameraFollow : MonoBehaviour {
-	private Vector3 offset;
 	public float xlag;
 	public float zlag;
     public float ylag;

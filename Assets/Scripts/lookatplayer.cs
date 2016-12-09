@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class lookatplayer : MonoBehaviour {
+public class LookAtPlayer : MonoBehaviour {
     public GameObject player;
     public GameObject planet;
+    public GameObject front;
     private float distance = 50;
 	// Use this for initialization
 	void Start () {
@@ -12,8 +13,10 @@ public class lookatplayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.LookAt(player.transform);
-        Vector3 direction = player.transform.position - planet.transform.position;
-        transform.position = direction.normalized * distance + player.transform.position;
+        Vector3 forward =  player.transform.position - planet.transform.position;
+        Vector3 up =  front.transform.position - player.transform.position;
+        transform.position = forward.normalized * distance + player.transform.position;
+        //transform.LookAt(player.transform);
+        transform.rotation = Quaternion.LookRotation(-forward.normalized, up.normalized);
     }
 }
