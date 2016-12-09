@@ -12,19 +12,19 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKey (KeyCode.Space)) {
-			rb.AddForce (new Vector3(0,force*Time.deltaTime,0));
+			rb.AddRelativeForce (new Vector3(0,force*Time.deltaTime,0));
 		}
 		if (Input.GetKey(KeyCode.D)) {
-			rb.AddForce (new Vector3(force * Time.deltaTime, 0,0));
+            rb.AddRelativeForce(new Vector3(force * Time.deltaTime, 0,0));
 		}
 		if (Input.GetKey(KeyCode.A)) {
-			rb.AddForce (new Vector3(-force * Time.deltaTime, 0,0));
+            rb.AddRelativeForce(new Vector3(-force * Time.deltaTime, 0,0));
 		}
 		if (Input.GetKey(KeyCode.W)) {
-			rb.AddForce (new Vector3(0,0, force * Time.deltaTime));
+            rb.AddRelativeForce(new Vector3(0,0, force * Time.deltaTime));
 		}
 		if (Input.GetKey(KeyCode.S)) {
-			rb.AddForce (new Vector3(0,0,-force * Time.deltaTime));
+            rb.AddRelativeForce(new Vector3(0,0,-force * Time.deltaTime));
 		}
 	}
 }
