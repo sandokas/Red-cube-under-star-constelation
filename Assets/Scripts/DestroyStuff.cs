@@ -12,7 +12,7 @@ namespace AssemblyCSharp
 				for (int i = 0; i < scale; i++) {
 					GameObject temp = (GameObject) Instantiate (col.gameObject, col.gameObject.transform.position, Random.rotation);
 					temp.tag = "dead";
-					temp.transform.localScale = new Vector3 (1.0f / scale, 1.0f / scale, 1.0f / scale);
+					temp.transform.localScale = new Vector3 (3.0f / scale, 3.0f / scale, 3.0f / scale);
 				}
 			}
 		}

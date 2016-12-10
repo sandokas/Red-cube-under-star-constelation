@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 	public float force;
+    public bool isFlatWorld;
 	Rigidbody rb;
 
     void Start () {
@@ -27,7 +28,13 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetKey(KeyCode.S)) {
             forceToAdd = Vector3.back * force * Time.deltaTime;
         }
-        rb.AddRelativeForce(forceToAdd,ForceMode.Impulse);
+        if (isFlatWorld)
+        {
+            rb.AddForce(forceToAdd, ForceMode.Impulse);
+        } else
+        {
+            rb.AddRelativeForce(forceToAdd, ForceMode.Impulse);
+        }
 
     }
 }
